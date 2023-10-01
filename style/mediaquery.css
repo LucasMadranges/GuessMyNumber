@@ -1,0 +1,31 @@
+@media (max-width: 640px) {
+  main {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .btn {
+    margin-bottom: 5rem;
+  }
+
+  .message {
+    margin-bottom: 5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  html {
+    font-size: 30%;
+  }
+
+  header {
+    margin-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  html {
+    font-size: 100%;
+  }
+}
