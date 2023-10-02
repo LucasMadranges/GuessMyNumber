@@ -49,10 +49,6 @@ h1 {
   transform: translate(-50%, 50%);
 }
 
-input[type="number"]::-webkit-inner-spin-button {
-  display: none;
-}
-
 .between {
   font-size: 1.4rem;
   position: absolute;
