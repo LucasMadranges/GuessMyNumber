@@ -2,6 +2,7 @@
 
 // Button
 const btnCheck = document.querySelector(".check");
+const btnRestart = document.querySelector(".again");
 
 // Text
 const textMessage = document.querySelector(".message");
@@ -16,38 +17,56 @@ const inputNumber = document.querySelector(".guess");
 const body = document.querySelector("body");
 
 // Valeurs
-const numberRandom = Math.trunc(Math.random() * 20) + 1;
+let numberRandom = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
+let highscore = 0;
 
 // Fonction
 function LosingGame(score) {
   if (score == 0) {
-    textMessage.textContent = "C'est perdu !";
+    textMessage.textContent = "⛔️ Perdu !";
     textScore.textContent = `💯 Score: 0`;
     textSecretNumber.textContent = String(numberRandom);
-    body.style.background = "#FF0000";
+    body.style.background = "#cc0000";
   }
 }
 
 function Game(number) {
   if (number > numberRandom) {
-    textMessage.textContent = "Plus bas !";
+    textMessage.textContent = "📈 Trop haut !";
     score--;
     textScore.textContent = `💯 Score: ${score}`;
   } else if (number < numberRandom) {
-    textMessage.textContent = "Plus haut !";
+    textMessage.textContent = "📉 Trop bas !";
     score--;
     textScore.textContent = `💯 Score: ${score}`;
   } else if (number == numberRandom) {
-    textMessage.textContent = "Trouvé !";
+    textMessage.textContent = "✅ Trouvé !";
     textSecretNumber.textContent = String(numberRandom);
     body.style.background = "#60b347";
-    textHighScore.textContent = `🥇 plus haut score: ${score}`;
+
+    if (highscore < score) {
+      textHighScore.textContent = `🥇 Plus haut score: ${score}`;
+      highscore = score;
+    }
   }
 }
 
+function restartGame() {
+  numberRandom = Math.trunc(Math.random() * 20) + 1;
+  textMessage.textContent = "Commence à chercher...";
+  body.style.background = "#222";
+  score = 20;
+  textScore.textContent = `💯 Score: ${score}`;
+}
+
+// Evenement
 btnCheck.addEventListener("click", () => {
   let number = Number(inputNumber.value);
   Game(number);
   LosingGame(score);
+});
+
+btnRestart.addEventListener("click", () => {
+  restartGame();
 });
